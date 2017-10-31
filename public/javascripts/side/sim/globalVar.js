@@ -1,5 +1,5 @@
 
-var cluster_result = new Map()  // data from clustered csv data
+var g_clusteredNodesMap = new Map()  // data from clustered csv data
 var g_clusteredNodesArray       // data from unclustered csv data
 
 var bufferQueue = [];           // buffer queue for saving temporary node data
@@ -13,7 +13,7 @@ var gridArray;          // grid cell array for node data
 var arrXSize, arrYSize  // gridArray length size # gridArray[arrXSize][arrYSize]
 
 
-cluster_result["keys"] = []     
+g_clusteredNodesMap["keys"] = []     
     
 var meter = 0.00001  // 1 meter value in LAT/LNG stytem
 var xTimes = 1000000 // xTimes for calculating relative values
