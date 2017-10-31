@@ -1,5 +1,5 @@
 
-var cluster_result = new Map()  // data from cluestered csv data
+var cluster_result = new Map()  // data from clustered csv data
 var globalTemp                  // data from unclustered csv data
 
 var bufferQueue = [];           // buffer queue for saving temporary node data
