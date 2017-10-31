@@ -1,7 +1,4 @@
 
-
-
-
 window.addEventListener("keypress",function(e){
     if(e.key =='b'||e.key=='B'){
         getTest()
