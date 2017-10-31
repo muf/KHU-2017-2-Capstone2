@@ -7,7 +7,7 @@ window.addEventListener("keypress",function(e){
         getTest()
      }
      else if(e.key =='n'||e.key=='N'){
-        addDrone()
+        addServiceArea()
      }
      else if (e.key=='v' || e.key=='V'){
          makeGridArray()

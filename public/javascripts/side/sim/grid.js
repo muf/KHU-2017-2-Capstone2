@@ -45,7 +45,7 @@ function makeGridArray(){
 
 }
 // 서비스 제공 영역 제공. auto 입력시 여의도에 지정된 영역으로 설정
-function addDrone( auto=true){
+function addServiceArea( auto=true){
     var lat = map.center.lat()
     var lng = map.center.lng()
     var meter = 0.00001
@@ -78,7 +78,7 @@ function addDrone( auto=true){
     drones.push(drone)
 
     google.maps.event.addListener(drone, "rightclick", function(event) {
-        deleteDrone(drone)
+        deleteServiceArea(drone)
     });
 
 }
@@ -147,21 +147,21 @@ function deleteCells(){
     }
     cells = []
 }
-function deleteDrone(drone){
-    var idx = findDrone(drone)
+function deleteServiceArea(drone){
+    var idx = findServiceArea(drone)
     drones[idx].setMap(null);
     drones.splice(idx,1)
 }
-function deleteDrones(){
+function deleteServiceAreas(){
     
     for(idx in drones){
-        deleteDrone(idx)
+        deleteServiceArea(idx)
     }
     drones = []
 }
 
 
-function findDrone(drone) { 
+function findServiceArea(drone) { 
     for(idx in drones){
         if(drones[idx] == drone){
             return idx

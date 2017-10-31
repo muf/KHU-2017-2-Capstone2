@@ -14,5 +14,5 @@ for(idx in dependencies){
 
 function run(){
     getTest()
-    addDrone(true)
+    addServiceArea(true)
 }
