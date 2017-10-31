@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title> Simulation </title>
+  <% include ./common/header.ejs %>
+    <!-- Custom CSS -->
+    <link rel='stylesheet' href='/css/logic/container.css' />
+    <link rel='stylesheet' href='/css/logic/navbar.css' />  
+    <link rel='stylesheet' href='/css/logic/side/side.css' />
+    <link rel='stylesheet' href='/css/logic/side/test_side.css' />
+     <!--JS -->
+    <script src="/javascripts/map.js"></script>   
+
+  </head>
+  <body>  
+    <% include ./common/main-navbar.ejs %>
+
+    <div id="main-container">
+      <!-- #main-container>#1 -->
+      <div id="map"></div>
+    </div>
+      
+
+    
+    
+     <!-- div id = map 을 찾기 때문에 div map 뒤에 호출해야 한다. -->
+    <!--등록된 key를 이용해서 구글 API 요청. 추가로 libraries=places 라이브러리 호출. callback=initMap-->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzSqxdqbzLyC57PF_vX4zyvvN4O_C0F4w&libraries=places&callback=initMap"></script>
+   
+    <script src="/javascripts/side/sim.js"></script>  
+    <script src="/javascripts/side/test_side.js"></script>
+    <script src="/javascripts/side/side.js"></script>
+    
+   
+    
+  </body>
+</html>

@@ -1,0 +1,17 @@
+.toggle-search>.nav-menu{
+    cursor:pointer;
+}
+
+.navbar-nav{
+
+    float:left;
+}
+
+ul.nav.navbar-nav.nav-toggle{
+    float:right!important;
+}
+
+#menu-img{
+    width:16px;
+    height:16px;
+}

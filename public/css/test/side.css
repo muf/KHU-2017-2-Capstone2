@@ -1,0 +1,41 @@
+#logic-tab-menu>table>tbody>tr>td:hover{
+    background-color:#98b4e0;
+    transition:0.45s;
+}
+#logic-tab-menu{
+    /*margin-top:30px;*/
+}logic-tab-menu>table{
+    border-weight:0px;
+}
+#logic-tab-menu>table>tbody>tr>td{
+    text-align:center;
+}
+#menu-list {
+    position: absolute;
+    display: none;
+}
+
+#menu-result {
+    position: absolute;
+    display: none;
+}
+#menu-upload {
+    position: absolute;
+}
+
+
+#row{
+    width:100%;
+}
+.side-button{
+    float:right;
+}
+.upload-label{
+    margin-bottom:10px;
+    font-size:20px;
+    padding-bottom:5px;
+    padding-top:30px;
+    border-bottom: 0.5px solid
+
+
+}
