@@ -1,7 +1,5 @@
 
-function drawg_drones(){
 
-}
 
 function groupNodes(){
     deleteDrones()

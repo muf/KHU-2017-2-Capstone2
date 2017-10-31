@@ -18,10 +18,4 @@ window.addEventListener("keypress",function(e){
      else if(e.key=='r' || e.key=='R'){
         run()
      }
-    else if(e.key =='q'||e.key=='Q'){
-        map.setZoom(map.getZoom()-2)
-    }
-    else if(e.key =='w'||e.key=='W'){
-        map.setZoom(map.getZoom()+2)
-    }
 })
