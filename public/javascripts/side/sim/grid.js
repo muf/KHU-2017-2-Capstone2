@@ -2,6 +2,7 @@
 
 // cell 배열을 만들고 노드들을 해당하는 cell에 삽입
 function makeGridArray(){
+
     if(rec_areas.length==0){
         return ;
     } 
@@ -66,6 +67,12 @@ function printGrid(){
 }
 function deleteDrones(){
     deleteRectangles(rec_drones)
+}
+function deleteCells(){
+    deleteRectangles(rec_cells)
+}
+function deleteAreas(){
+    deleteRectangles(rec_areas)
 }
 
 function drawDrones(drone){
