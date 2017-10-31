@@ -1,6 +1,6 @@
 
 var cluster_result = new Map()  // data from clustered csv data
-var g_clusteredNodesArray                  // data from unclustered csv data
+var g_clusteredNodesArray       // data from unclustered csv data
 
 var bufferQueue = [];           // buffer queue for saving temporary node data
 var confirmed_nodes = []        // node data # removed noise data    
