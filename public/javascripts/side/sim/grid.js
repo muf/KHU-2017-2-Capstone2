@@ -2,22 +2,22 @@
 
 // cell 배열을 만들고 노드들을 해당하는 cell에 삽입
 function makeGridArray(){
-    if(drones.length==0){
+    if(areas.length==0){
         return ;
     } 
     var meter = 0.00001
     var xTimes = 1000000
 
-    rX0 =  drones[0].getBounds().b.b
-    rXM =  drones[0].getBounds().b.f
-    rY0 =  drones[0].getBounds().f.b
-    rYM =  drones[0].getBounds().f.f
+    rX0 =  areas[0].getBounds().b.b
+    rXM =  areas[0].getBounds().b.f
+    rY0 =  areas[0].getBounds().f.b
+    rYM =  areas[0].getBounds().f.f
 
     
-    X0 =  Math.floor(drones[0].getBounds().b.b * xTimes)
-    XM =  Math.floor(drones[0].getBounds().b.f * xTimes)
-    Y0 =  Math.floor(drones[0].getBounds().f.b * xTimes)
-    YM =  Math.floor(drones[0].getBounds().f.f * xTimes)
+    X0 =  Math.floor(areas[0].getBounds().b.b * xTimes)
+    XM =  Math.floor(areas[0].getBounds().b.f * xTimes)
+    Y0 =  Math.floor(areas[0].getBounds().f.b * xTimes)
+    YM =  Math.floor(areas[0].getBounds().f.f * xTimes)
 
     gridSize = 10 * meter * xTimes;
 
@@ -68,17 +68,17 @@ function addServiceArea( auto=true){
     }
 
     // Define a rectangle and set its editable property to true.
-    var drone = new google.maps.Rectangle({
+    var area = new google.maps.Rectangle({
         bounds: bounds,
         editable: true,
         draggable: true
     });
-    drone.setMap(map);
+    area.setMap(map);
 
-    drones.push(drone)
+    areas.push(area)
 
-    google.maps.event.addListener(drone, "rightclick", function(event) {
-        deleteServiceArea(drone)
+    google.maps.event.addListener(area, "rightclick", function(event) {
+        deleteServiceArea(area)
     });
 
 }
@@ -147,23 +147,23 @@ function deleteCells(){
     }
     cells = []
 }
-function deleteServiceArea(drone){
-    var idx = findServiceArea(drone)
-    drones[idx].setMap(null);
-    drones.splice(idx,1)
+function deleteServiceArea(area){
+    var idx = findServiceArea(area)
+    areas[idx].setMap(null);
+    areas.splice(idx,1)
 }
 function deleteServiceAreas(){
     
-    for(idx in drones){
+    for(idx in areas){
         deleteServiceArea(idx)
     }
-    drones = []
+    areas = []
 }
 
 
-function findServiceArea(drone) { 
-    for(idx in drones){
-        if(drones[idx] == drone){
+function findServiceArea(area) { 
+    for(idx in areas){
+        if(areas[idx] == area){
             return idx
         }
     }

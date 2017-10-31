@@ -18,11 +18,11 @@ function groupNodes(){
                     }
 
                     while(bufferQueue.length > 10){
-                        aps.push([])
+                        drones.push([])
                         for(var cni = 0; cni < 10; cni++){ 
                             var item = bufferQueue[0] // 맨 앞 item pop
                             bufferQueue.splice(0,1) // 맨 앞 제거
-                            aps[aps.length-1].push(item)
+                            drones[drones.length-1].push(item)
                             // gridArray에서도 제거
                             for(idx in gridArray[item.i][item.j]){
                                 if(gridArray[item.i][item.j][idx] == item.node){
@@ -59,11 +59,13 @@ function groupNodes2(){
                     }
 
                     while(bufferQueue.length > 10){
-                        aps.push([])
+                        drones.push([])
+                        drones[drones.length-1].postion = {lat: 0, lng:0}
+                        
                         for(var cni = 0; cni < 10; cni++){ 
                             var item = bufferQueue[0] // 맨 앞 item pop
                             bufferQueue.splice(0,1) // 맨 앞 제거
-                            aps[aps.length-1].push(item)
+                            drones[drones.length-1].push(item)
                             // gridArray에서도 제거
                             
                             for(idx in gridArray[item.i][item.j]){
