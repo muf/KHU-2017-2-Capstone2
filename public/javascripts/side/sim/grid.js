@@ -37,7 +37,7 @@ function makeGridArray(){
     for (var i = 0; i < confirmed_nodes.length; i++){
         var Yarr = Math.floor((Math.floor(confirmed_nodes[i][0] * xTimes) - X0) / gridSize) + 1
         var Xarr = arrXSize - Math.floor((Math.floor(confirmed_nodes[i][1] * xTimes) - Y0) / gridSize) -1
-        console.log("X:"+Xarr+" / Y: "+Yarr + " / label : "+confirmed_nodes[i][3])
+        // console.log("X:"+Xarr+" / Y: "+Yarr + " / label : "+confirmed_nodes[i][3])
         gridArray[Xarr][Yarr].push(confirmed_nodes[i])
     }
 

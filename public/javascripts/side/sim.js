@@ -3,8 +3,7 @@ var dependencies =[
     "data.js",
     "grid.js",
     "grouping.js",
-    "window.js",
-    "my.js"
+    "window.js"
 ]
 for(idx in dependencies){
     var dependency = dependencies[idx]
