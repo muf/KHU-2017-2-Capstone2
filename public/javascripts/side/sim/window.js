@@ -18,4 +18,7 @@ window.addEventListener("keypress",function(e){
      else if(e.key=='r' || e.key=='R'){
         run()
      }
+     else if(e.key=='t' || e.key=='T'){
+        toggle_screen()
+     }
 })

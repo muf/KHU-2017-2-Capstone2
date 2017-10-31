@@ -13,7 +13,7 @@ var g_drones = []     // grouped rec_cells array
 
 var gridArray;          // grid cell array for node data
 var arrXSize, arrYSize  // gridArray length size # gridArray[arrXSize][arrYSize]
-
+var g_centerOfGravity = { lat:0, lng:0 }     // center of gravity for weight of drones
 
 g_clusteredNodesMap["keys"] = []     
     
@@ -27,3 +27,10 @@ var rX0, rXM, rY0, rYM   // rectangle area for service # absolute values
 var apCoverage = 100 * meter * xTimes    // drone ap coverage value # relative value
 var gridSize                             // cell grid Size # relative value
 
+function initGlobalVars(){
+    g_clusteredNodes = []
+    g_clusteredNodesMap = new Map()
+    g_filteredNodes = [] 
+    g_drones = []
+    g_centerOfGravity = { lat:0, lng:0 }
+}

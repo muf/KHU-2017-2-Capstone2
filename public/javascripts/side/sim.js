@@ -12,17 +12,12 @@ for(idx in dependencies){
 }
 
 function run(){
-    
     deleteDrones()
     deleteAreas()
     deleteCells()
     deleteMarkers()
-    g_clusteredNodes = []
-    g_clusteredNodesMap = new Map()
-    g_filteredNodes = [] 
-    g_drones = []
+    initGlobalVars()
     reload()
-
     getTest()
     addServiceArea(true)
 }

@@ -39,7 +39,7 @@ function getTest(){
         g_filteredNodes = []
         g_clusteredNodesMap = new Map()
         g_clusteredNodesMap["keys"] = []
-
+        
         for(var idx = 1; idx < g_clusteredNodes.length; idx++){
             var cluster_number = Number(g_clusteredNodes[idx][2])
             var lng = Number(g_clusteredNodes[idx][0])
