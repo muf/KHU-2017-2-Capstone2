@@ -24,13 +24,11 @@ function groupNodes(){
                             bufferQueue.splice(0,1) // 맨 앞 제거
                             aps[aps.length-1].push(item)
                             // gridArray에서도 제거
-                            
                             for(idx in gridArray[item.i][item.j]){
                                 if(gridArray[item.i][item.j][idx] == item.node){
                                     gridArray[item.i][item.j].splice(idx, 1)
                                 }
                             }
-
                         }
                     }
 
