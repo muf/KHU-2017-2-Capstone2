@@ -11,6 +11,8 @@ window.scrollTo(0,0)
 
 toggle_visibility_s = true;
 toggle_visibility_a = false;
+
+var saveWidth
 // toggle side menu
 function toggle_menu(key){
     console.log("========= toggle menu ==========")
@@ -40,7 +42,7 @@ function toggle_menu(key){
                 toggle_visibility_a=false
             }
 
-            $('#side-container').css('width','80%');
+            $('#side-container').css('width','');
             $('#side-container').toggle();
             select_menu('menu-list');
             toggle_visibility_s=true;

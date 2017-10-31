@@ -61,9 +61,9 @@ function printGrid(){
         }
     stringStream += "\n"
     }
+    stringStream += "total nodes : "+total;
     console.log(stringStream)
-    console.log("total nodes : " + total)
-
+    alert(stringStream)
 }
 function deleteDrones(){
     deleteRectangles(rec_drones)
@@ -164,8 +164,9 @@ function deleteRectangle(container, item){
 }
 
 function deleteRectangles(container){
-       for(idx in container){
-        deleteRectangle(container, container[idx])
+    var copy_container = Object.assign({}, container)
+    for(idx in copy_container){
+        deleteRectangle(container, copy_container[idx])
     }
     container = []
 }
