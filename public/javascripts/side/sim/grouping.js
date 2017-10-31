@@ -31,6 +31,7 @@ function groupNodes(){
                         for(var cni = 0; cni < 10; cni++){ 
                             var node = bufferQueue[0] // 맨 앞 item pop
                             bufferQueue.splice(0,1) // 맨 앞 제거
+                            node.handle_number = g_drones.length-1
                             g_drones[g_drones.length-1].push(node)
                             latSum += node.lat
                             lngSum += node.lng

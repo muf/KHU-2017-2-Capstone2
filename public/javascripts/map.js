@@ -95,11 +95,11 @@ function add(lat,long,_list,label,i){
     title:_title,
     label:""+label,
     icon : image,
-    list : _list
+    node : _list
     
   });
   google.maps.event.addListener(marker, "click", function(event) {
-    alert(marker.title)
+    alert(JSON.stringify(marker.node))
     //console.log(marker.title).
   });
   google.maps.event.addListener(marker, "rightclick", function(event) {

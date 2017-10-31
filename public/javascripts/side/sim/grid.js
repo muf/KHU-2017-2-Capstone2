@@ -2,9 +2,25 @@ var toggle_screen_flag = false
 function toggle_screen(){
     if(toggle_screen_flag==true){
         
+        for(idx in rec_drones){
+            rec_drones[idx].setMap(map)
+        }
+        for(idx in markers){
+            markers[idx].setMap(map)    
+        }
+        toggle_screen_flag = false
     }
     else{
+        for(idx in rec_drones){
+            rec_drones[idx].setMap(null)
+        }
         
+        for(idx in markers){
+            if(markers[idx].node.handle_number != -1){
+                markers[idx].setMap(null)
+            }
+        }
+        toggle_screen_flag = true
     }
 }
 

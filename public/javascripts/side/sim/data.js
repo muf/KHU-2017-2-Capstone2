@@ -46,7 +46,7 @@ function getTest(){
             var lat = Number(g_clusteredNodes[idx][1])
             var label_number = markers.length
 
-            var node = {lat : lat, lng : lng, label_number : label_number, cluster_number : cluster_number}
+            var node = {lat : lat, lng : lng, label_number : label_number, cluster_number : cluster_number, handle_number : -1}
             
             if(cluster_number!=0){
                 add(lat, lng,node,label_number,cluster_number);  
