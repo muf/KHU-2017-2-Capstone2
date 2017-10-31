@@ -32,45 +32,5 @@ function add_new_coords() {
 }
 function make_table_rows(){
     
-    deleteMarkers();
-    markers=[];
-    var label=0
-    $('#side-table-container > table > tbody').empty();
-    for(var i = 0; i<len; i++){
-        var id = $("#"+($('.coords')[i]).id);
-        var text = $(id).val();
-        var orignal_text = text;
-        text=text.replace(/[(]/g, "{")
-        text=text.replace(/[)]/g, "}")
-        var coords_temp_list = text.split("{")
-        var coords_len = coords_temp_list.length
-        start_idx = 1;
-        if(coords_len==1){
-            start_idx  = 0;
-        }
-        for(var coords_idx = start_idx; coords_idx<coords_len; coords_idx++){
-            var rough_coords = coords_temp_list[coords_idx].split("}")[0].replace(latlong_regex, "").split(",");
-            add(parseFloat(rough_coords[0]),parseFloat(rough_coords[1]),[],label,0);
-
-            if(text!=""){
-                var num =label;
-                
-                var refined_coords ='';
-                refined_coords+=rough_coords[0]+","+rough_coords[1]
-                var para = $('<tr class="tr-line tr-line'+num+'"'+'><td class = "td_num">'+num+'</td><td>'+orignal_text+'</td><td>'+refined_coords+'</td></tr>');
-                para.appendTo('#side-table-container > table > tbody');
-                $('.tr-line' + num).click(function () {
-                    var latlong = $(this)[0].children[2].innerHTML.split(",");
-                    map.setCenter({lat: parseFloat(latlong[0]), lng: parseFloat(latlong[1])}); 
-                });
-                
-            }
-            
-            label=label+1
-        }
-        
-      
-    }
-    reload();
 }
 
