@@ -164,8 +164,9 @@ function deleteRectangle(container, item){
 }
 
 function deleteRectangles(container){
-       for(idx in container){
-        deleteRectangle(container, container[idx])
+    var copy_container = Object.assign({}, container)
+    for(idx in copy_container){
+        deleteRectangle(container, copy_container[idx])
     }
     container = []
 }
