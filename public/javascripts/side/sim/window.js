@@ -13,7 +13,7 @@ window.addEventListener("keypress",function(e){
          makeGridArray()
      }
      else if(e.key=='c' || e.key=='C'){
-        drawCells()
+        addCells()
      }
      else if(e.key=='g' || e.key=='G'){
         groupNodes()

@@ -6,18 +6,18 @@ function getData(){
     url: '/getClusteredCsvData',
     dataType:'json',
     success: function (result) {
-        g_clusteredNodesArray = result; // get clustered csv data
+        g_clusteredNodes = result; // get clustered csv data
 
-        for(var idx = 1; idx < g_clusteredNodesArray.length; idx++){
-            var lng = g_clusteredNodesArray[idx][0]
-            var lat = g_clusteredNodesArray[idx][1]
+        for(var idx = 1; idx < g_clusteredNodes.length; idx++){
+            var lng = g_clusteredNodes[idx][0]
+            var lat = g_clusteredNodes[idx][1]
             var label_number = markers.length 
             add(lat, lng,[],label_number,0);  // insert to map array as all same pin color
 
       
         }
-        if(g_clusteredNodesArray.length != 0){
-            map.setCenter({lat: parseFloat(g_clusteredNodesArray[1][1]), lng: parseFloat(g_clusteredNodesArray[1][0])}); 
+        if(g_clusteredNodes.length != 0){
+            map.setCenter({lat: parseFloat(g_clusteredNodes[1][1]), lng: parseFloat(g_clusteredNodes[1][0])}); 
         }
         reload()
 
@@ -35,21 +35,23 @@ function getTest(){
     url: '/getClusteredCsvData',
     dataType:'json',
     success: function (result) {
-        g_clusteredNodesArray=result; //  get clustered csv data
-        confirmed_nodes = []
+        g_clusteredNodes=result; //  get clustered csv data
+        g_filteredNodes = []
         g_clusteredNodesMap = new Map()
         g_clusteredNodesMap["keys"] = []
 
-        for(var idx = 1; idx < g_clusteredNodesArray.length; idx++){
-            var cluster_number = Number(g_clusteredNodesArray[idx][2])
-            var lng = g_clusteredNodesArray[idx][0]
-            var lat = g_clusteredNodesArray[idx][1]
+        for(var idx = 1; idx < g_clusteredNodes.length; idx++){
+            var cluster_number = Number(g_clusteredNodes[idx][2])
+            var lng = Number(g_clusteredNodes[idx][0])
+            var lat = Number(g_clusteredNodes[idx][1])
             var label_number = markers.length
+
+            var node = {lat : lat, lng : lng, label_number : label_number, cluster_number : cluster_number}
             
             if(cluster_number!=0){
                 add(lat, lng,[],label_number,cluster_number);  
-                g_clusteredNodesArray[idx].push(label_number)
-                confirmed_nodes.push(g_clusteredNodesArray[idx])
+                g_clusteredNodes[idx].push(label_number)
+                g_filteredNodes.push(node)
             }
 
             if(!g_clusteredNodesMap[cluster_number]){
@@ -57,11 +59,11 @@ function getTest(){
                 g_clusteredNodesMap["keys"].push(cluster_number)
 
             }
-            g_clusteredNodesMap[cluster_number].push(g_clusteredNodesArray[idx])
+            g_clusteredNodesMap[cluster_number].push(node)
       
         }
-        if(g_clusteredNodesArray.length != 0){
-            map.setCenter({lat: parseFloat(g_clusteredNodesArray[1][1]), lng: parseFloat(g_clusteredNodesArray[1][0])}); 
+        if(g_clusteredNodes.length != 0){
+            map.setCenter({lat: parseFloat(g_clusteredNodes[1][1]), lng: parseFloat(g_clusteredNodes[1][0])}); 
         }
         reload()
 

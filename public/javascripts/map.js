@@ -17,11 +17,11 @@ function initMap(){
     center: {lat: 37.497908, lng: 127.027619},
     zoom: 16,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-  zoomControl: true,
-  mapTypeControl: true,
-  scaleControl: true,
-  streetViewControl: true,
-  rotateControl: true
+    zoomControl: true,
+    mapTypeControl: true,
+    scaleControl: true,
+    streetViewControl: true,
+    rotateControl: true
   });
   
 

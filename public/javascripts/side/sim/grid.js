@@ -2,22 +2,22 @@
 
 // cell 배열을 만들고 노드들을 해당하는 cell에 삽입
 function makeGridArray(){
-    if(areas.length==0){
+    if(rec_areas.length==0){
         return ;
     } 
     var meter = 0.00001
     var xTimes = 1000000
 
-    rX0 =  areas[0].getBounds().b.b
-    rXM =  areas[0].getBounds().b.f
-    rY0 =  areas[0].getBounds().f.b
-    rYM =  areas[0].getBounds().f.f
+    rX0 =  rec_areas[0].getBounds().b.b
+    rXM =  rec_areas[0].getBounds().b.f
+    rY0 =  rec_areas[0].getBounds().f.b
+    rYM =  rec_areas[0].getBounds().f.f
 
     
-    X0 =  Math.floor(areas[0].getBounds().b.b * xTimes)
-    XM =  Math.floor(areas[0].getBounds().b.f * xTimes)
-    Y0 =  Math.floor(areas[0].getBounds().f.b * xTimes)
-    YM =  Math.floor(areas[0].getBounds().f.f * xTimes)
+    X0 =  Math.floor(rec_areas[0].getBounds().b.b * xTimes)
+    XM =  Math.floor(rec_areas[0].getBounds().b.f * xTimes)
+    Y0 =  Math.floor(rec_areas[0].getBounds().f.b * xTimes)
+    YM =  Math.floor(rec_areas[0].getBounds().f.f * xTimes)
 
     gridSize = 10 * meter * xTimes;
 
@@ -34,17 +34,69 @@ function makeGridArray(){
         }
     }
     // allocate
-    for (var i = 0; i < confirmed_nodes.length; i++){
-        var Yarr = Math.floor((Math.floor(confirmed_nodes[i][0] * xTimes) - X0) / gridSize) + 1
-        var Xarr = arrXSize - Math.floor((Math.floor(confirmed_nodes[i][1] * xTimes) - Y0) / gridSize) -1
-        // console.log("X:"+Xarr+" / Y: "+Yarr + " / label : "+confirmed_nodes[i][3])
-        gridArray[Xarr][Yarr].push(confirmed_nodes[i])
+    for (var i = 0; i < g_filteredNodes.length; i++){
+        var Yarr = Math.floor((Math.floor(g_filteredNodes[i].lng * xTimes) - X0) / gridSize) + 1
+        var Xarr = arrXSize - Math.floor((Math.floor(g_filteredNodes[i].lat * xTimes) - Y0) / gridSize) -1
+        // console.log("X:"+Xarr+" / Y: "+Yarr + " / label : "+g_filteredNodes[i].cluster_number)
+        gridArray[Xarr][Yarr].push(g_filteredNodes[i])
     }
 
     printGrid()
 
 }
 // 서비스 제공 영역 제공. auto 입력시 여의도에 지정된 영역으로 설정
+
+// cell 배열 출력
+function printGrid(){
+    var stringStream = ""
+    var total = 0
+    for(var i = 0; i < arrXSize; i++){
+        for(var j = 0; j < arrYSize; j++){
+              if(gridArray[i][j].length==0) stringStream += "-"
+            else{
+                total += gridArray[i][j].length
+                stringStream += ( gridArray[i][j].length )
+            }
+        }
+    stringStream += "\n"
+    }
+    console.log(stringStream)
+    console.log("total nodes : " + total)
+
+}
+function deleteDrones(){
+    deleteRectangles(rec_drones)
+}
+
+function drawDrones(drone){
+    
+    var lng = drone.position.lng
+    var lat = drone.position.lat
+    var meter = 0.00001
+    var width = apCoverage/ xTimes / 2
+    var bounds = {
+        north: lat + width,
+        south: lat - width,
+        east: lng + width,
+        west: lng - width
+    };
+    drone.bounds = bounds
+    drawRectangle(rec_drones, bounds)
+}
+
+function addCell(i,j){
+    var lng = rX0+j*0.00001 * 10 
+    var lat = rY0+i*0.00001 * 10
+    var meter = 0.00001
+    var width = meter * 10
+    var bounds = {
+        north: lat + width,
+        south: lat,
+        east: lng + width,
+        west: lng
+    };
+    drawRectangle(rec_cells, bounds)
+}
 function addServiceArea( auto=true){
     var lat = map.center.lat()
     var lng = map.center.lng()
@@ -67,111 +119,52 @@ function addServiceArea( auto=true){
           };
     }
 
-    // Define a rectangle and set its editable property to true.
-    var area = new google.maps.Rectangle({
-        bounds: bounds,
-        editable: true,
-        draggable: true
-    });
-    area.setMap(map);
-
-    areas.push(area)
-
-    google.maps.event.addListener(area, "rightclick", function(event) {
-        deleteServiceArea(area)
-    });
-
+    drawRectangle(rec_areas, bounds)
 }
 
-// cell 배열 출력
-function printGrid(){
-    var stringStream = ""
-    var total = 0
+function addCells(){
     for(var i = 0; i < arrXSize; i++){
         for(var j = 0; j < arrYSize; j++){
-              if(gridArray[i][j].length==0) stringStream += "-"
-            else{
-                total += gridArray[i][j].length
-                stringStream += ( gridArray[i][j].length )
-            }
+            addCell(i,j)
         }
-    stringStream += "\n"
     }
-    console.log(stringStream)
-    console.log("total nodes : "+total)
-
 }
 
-function drawCell(i,j,){
-    var lng = rX0+j*0.00001 * 10 
-    var lat = rY0+i*0.00001 * 10
-    var meter = 0.00001
-    var width = meter * 10
-    var bounds = {
-        north: lat + width,
-        south: lat,
-        east: lng + width,
-        west: lng
-      };
+function drawRectangle(container, bounds){
     // Define a rectangle and set its editable property to true.
-    var cell = new google.maps.Rectangle({
+    console.log("draw Rectangle..")
+    var item = new google.maps.Rectangle({
         bounds: bounds,
         editable: false
     });
-    cell.setMap(map);
+    item.setMap(map);
 
-    cells.push(cell)
-    google.maps.event.addListener(cell, "rightclick", function(event) {
-        deleteCell(cell)
+    container.push(item)
+    google.maps.event.addListener(item, "rightclick", function(event) {
+        deleteRectangle(container, item)
+    });
+    google.maps.event.addListener(item, "click", function(event) {
+        console.log("container : ")
+        console.log(container)
+        console.log("item : ")
+        console.log(item)
     });
 }
-function drawCells(){
-    for(var i = 0; i < arrXSize; i++){
-        for(var j = 0; j < arrYSize; j++){
-            drawCell(i,j)
-        }
+function deleteRectangle(container, item){
+    var idx = findRectangle(container, item)
+    container[idx].setMap(null)
+    container.splice(idx,1)
+}
+
+function deleteRectangles(container){
+       for(idx in container){
+        deleteRectangle(container, container[idx])
     }
-   
+    container = []
 }
-
-
-
-function deleteCell(cell){
-    var idx = findCell(cell)
-    cells[idx].setMap(null)
-    cells.splice(idx,1)
-}
-function deleteCells(){
-    for(idx in cells){
-        deleteCell(idx)
-    }
-    cells = []
-}
-function deleteServiceArea(area){
-    var idx = findServiceArea(area)
-    areas[idx].setMap(null);
-    areas.splice(idx,1)
-}
-function deleteServiceAreas(){
-    
-    for(idx in areas){
-        deleteServiceArea(idx)
-    }
-    areas = []
-}
-
-
-function findServiceArea(area) { 
-    for(idx in areas){
-        if(areas[idx] == area){
-            return idx
-        }
-    }
-    return -1
-}
-function findCell(cell) { 
-    for(idx in cells){
-        if(cells[idx] == cell){
+function findRectangle(container, item) { 
+    for(idx in container){
+        if(container[idx] == item){
             return idx
         }
     }
