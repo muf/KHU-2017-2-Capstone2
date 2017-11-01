@@ -39,7 +39,9 @@ function getTest(){
         g_filteredNodes = []
         g_clusteredNodesMap = new Map()
         g_clusteredNodesMap["keys"] = []
-        
+        g_centerOfGravity.lat = 0
+        g_centerOfGravity.lng = 0
+
         for(var idx = 1; idx < g_clusteredNodes.length; idx++){
             var cluster_number = Number(g_clusteredNodes[idx][2])
             var lng = Number(g_clusteredNodes[idx][0])
@@ -52,6 +54,9 @@ function getTest(){
                 add(lat, lng,node,label_number,cluster_number);  
                 g_clusteredNodes[idx].push(label_number)
                 g_filteredNodes.push(node)
+                
+                g_centerOfGravity.lat += lat
+                g_centerOfGravity.lng += lng
             }
 
             if(!g_clusteredNodesMap[cluster_number]){
@@ -65,6 +70,10 @@ function getTest(){
         if(g_clusteredNodes.length != 0){
             map.setCenter({lat: parseFloat(g_clusteredNodes[1][1]), lng: parseFloat(g_clusteredNodes[1][0])}); 
         }
+        
+        g_centerOfGravity.lat /= g_filteredNodes.length
+        g_centerOfGravity.lng /= g_filteredNodes.length
+
         reload()
 
     },

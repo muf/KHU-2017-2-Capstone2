@@ -110,7 +110,7 @@ function add(lat,long,_list,label,i){
     lat2 = lat;
     long2 = lng;
     var _distance = distanceTo(lat1,long1,lat2,long2);
-    alert("거리 : "+_distance*100+"m")
+    alert("거리 : "+_distance*1000+"m")
     selected = false;
   }
   else{

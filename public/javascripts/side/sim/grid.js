@@ -23,6 +23,11 @@ function toggle_screen(){
         toggle_screen_flag = true
     }
 }
+function getXY(lat, lng){
+        var Yarr = Math.floor((Math.floor(lng * xTimes) - X0) / gridSize) + 1
+        var Xarr = arrXSize - Math.floor((Math.floor(lat * xTimes) - Y0) / gridSize) -1
+        return {x:Xarr,y:Yarr}
+}
 
 // cell 배열을 만들고 노드들을 해당하는 cell에 삽입
 function makeGridArray(){
@@ -77,7 +82,12 @@ function printGrid(){
     var total = 0
     for(var i = 0; i < arrXSize; i++){
         for(var j = 0; j < arrYSize; j++){
-              if(gridArray[i][j].length==0) stringStream += "-"
+            if(gridArray[i][j]=="center"){
+                  stringStream+="C"
+            }
+            else  if(gridArray[i][j].length==0) {
+                stringStream += "-"
+            }
             else{
                 total += gridArray[i][j].length
                 stringStream += ( gridArray[i][j].length )
