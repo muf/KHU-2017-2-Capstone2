@@ -1,11 +1,13 @@
 var toggle_screen_flag = false
 var toggle_result_screen_flag = false
+
 function deleteMapDrones(){
     for(idx in map_drones){
         map_drones[idx].setMap(null)
     }
     map_drones = []
 }
+
 function makeMapDrones(){
     deleteMapDrones()
     for(idx in rec_drones){
@@ -18,6 +20,7 @@ function makeMapDrones(){
         map_drones.push(drone)
     }
 }
+
 function draw_result(){
     makeMapDrones()
     if(toggle_result_screen_flag == true){
@@ -34,6 +37,7 @@ function draw_result(){
         toggle_result_screen_flag = true
     }
 }
+
 function toggle_screen(){
     if(toggle_screen_flag==true){
         
@@ -58,6 +62,7 @@ function toggle_screen(){
         toggle_screen_flag = true
     }
 }
+
 function getXY(lat, lng){
         var Yarr = Math.floor((Math.floor(lng * xTimes) - X0) / gridSize) + 1
         var Xarr = arrXSize - Math.floor((Math.floor(lat * xTimes) - Y0) / gridSize) -1
