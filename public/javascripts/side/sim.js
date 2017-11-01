@@ -21,3 +21,4 @@ function run(){
     getTest()
     addServiceArea(true)
 }
+

@@ -33,13 +33,17 @@ function coreProcess(ini, inj,threshold=10){
         bufferQueue.push(node)
     }
 
-    while(bufferQueue.length > threshold){
+    while(bufferQueue.length >= threshold){
         g_drones.push([])
         g_drones[g_drones.length-1].position = {lat: 0, lng:0}
         var latSum = 0
         var lngSum = 0
 
-        for(var cni = 0; cni < threshold; cni++){ 
+        var nodesSize = nodeCoverage
+        if(bufferQueue.length < nodeCoverage){
+            nodesSize = bufferQueue.length
+        }
+        for(var cni = 0; cni < nodesSize; cni++){ 
             var node = bufferQueue[0] // 맨 앞 item pop
             bufferQueue.splice(0,1) // 맨 앞 제거
             node.handle_number = g_drones.length-1
@@ -54,8 +58,8 @@ function coreProcess(ini, inj,threshold=10){
             }
         }
         // 실제 드론 위치 배정
-        g_drones[g_drones.length-1].position.lat = latSum / threshold
-        g_drones[g_drones.length-1].position.lng = lngSum / threshold
+        g_drones[g_drones.length-1].position.lat = latSum / nodesSize
+        g_drones[g_drones.length-1].position.lng = lngSum / nodesSize
         drawDrones(g_drones[g_drones.length-1])
         
     }

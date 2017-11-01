@@ -1,4 +1,39 @@
 var toggle_screen_flag = false
+var toggle_result_screen_flag = false
+function deleteMapDrones(){
+    for(idx in map_drones){
+        map_drones[idx].setMap(null)
+    }
+    map_drones = []
+}
+function makeMapDrones(){
+    deleteMapDrones()
+    for(idx in rec_drones){
+        var bounds =  rec_drones[idx].bounds
+        var point = {lng: (bounds.b.f+bounds.b.b)/2, lat : (bounds.f.f + bounds.f.b)/2}
+        var drone = new google.maps.Marker({
+            position: new google.maps.LatLng(point.lat, point.lng),
+            label:""+idx
+        });
+        map_drones.push(drone)
+    }
+}
+function draw_result(){
+    makeMapDrones()
+    if(toggle_result_screen_flag == true){
+        for(idx in map_drones){
+            map_drones[idx].setMap(null)
+        }
+        toggle_result_screen_flag = false
+
+    }
+    else{
+        for(idx in map_drones){
+            map_drones[idx].setMap(map)
+        }
+        toggle_result_screen_flag = true
+    }
+}
 function toggle_screen(){
     if(toggle_screen_flag==true){
         

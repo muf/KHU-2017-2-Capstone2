@@ -8,6 +8,7 @@ var g_filteredNodes = []        // node data # removed noise data
 var rec_areas = []   // name should be changed. this is rectangular shape for service area
 var rec_cells = []   // grid rec_cells array for service area. # only uesd for drawing grid lines. not including node data.
 var rec_drones = [] 
+var map_drones = []
 
 var g_drones = []     // grouped rec_cells array 
 
@@ -23,7 +24,7 @@ var xTimes = 1000000 // xTimes for calculating relative values
 var X0, XM, Y0, YM       // rectangle area for service # relative values
 var rX0, rXM, rY0, rYM   // rectangle area for service # absolute values
 
-
+var nodeCoverage = 10
 var apCoverage = 100 * meter * xTimes    // drone ap coverage value # relative value
 var gridSize                             // cell grid Size # relative value
 

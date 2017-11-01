@@ -21,4 +21,7 @@ window.addEventListener("keypress",function(e){
      else if(e.key=='t' || e.key=='T'){
         toggle_screen()
      }
+     else if(e.key=='d' || e.key=='D'){
+        draw_result()
+     }
 })
