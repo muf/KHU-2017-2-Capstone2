@@ -7,7 +7,6 @@ function deleteMapDrones(){
     }
     map_drones = []
 }
-
 function makeMapDrones(){
     deleteMapDrones()
     for(idx in rec_drones){
