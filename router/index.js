@@ -48,8 +48,8 @@ router.get('/sim',function(req, res, next) {
         
       })
 
-      // var dataPath =  '/Users/junghyun.park/workspace/git/kiwi_kyunghee/web/JS_web/data/'
-      var dataPath = 'C:/Users/Phigaro/Desktop/Cap2/KHU-2017-2-Capstone2/'
+      var dataPath =  '/Users/junghyun.park/workspace/git/DRONEAP/KHU-2017-2-Capstone2/data/'
+      // var dataPath = 'C:/Users/Phigaro/Desktop/Cap2/KHU-2017-2-Capstone2/data/'
       var csvFileName = 'Output4.csv'
       var csvPath = dataPath + csvFileName;
       fs.createReadStream(csvPath).pipe(parser);
