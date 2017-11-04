@@ -15,13 +15,9 @@ toggle_visibility_a = false;
 var saveWidth
 // toggle side menu
 function toggle_menu(key){
-    console.log("========= toggle menu ==========")
-    console.log("s : "+toggle_visibility_s)
-    console.log("a : "+toggle_visibility_a)
     if(key=='s'){
         if(toggle_visibility_s==true){
             scroll_position =$('body').scrollTop();
-            console.log(scroll_position);
 
             $('#map').css('z-index',0);
             google.maps.event.trigger(map, 'resize');
@@ -36,62 +32,14 @@ function toggle_menu(key){
             $('#map').css('z-index',-1);
             google.maps.event.trigger(map, 'resize');
 
-            if(toggle_visibility_a==true){
-                $('#result-side-container').css('width','0%');
-                $('#result-side-container').toggle()
-                toggle_visibility_a=false
-            }
-
             $('#side-container').css('width','');
             $('#side-container').toggle();
-            select_menu('menu-list');
             toggle_visibility_s=true;
         }
     }
-    else if(key =='a'){
-        if(toggle_visibility_a==true){
-            google.maps.event.trigger(map, 'resize');
-            toggle_visibility_a=false
-            $('#result-side-container').css('width','0%');
-            $('#result-side-container').toggle()
-
-            select_menu('auto-list');
-        }
-        else{
-            $('#result-side-container').css('width','80%');
-            google.maps.event.trigger(map, 'resize');
-            
-            $('#result-side-container').toggle();
-            if(toggle_visibility_s==true){   
-                scroll_position =$('body').scrollTop();
-                $('#side-container').css('width','0%');
-                $('#side-container').toggle(); 
-                toggle_visibility_s=false
-            }
-            select_menu('auto-list');
-            toggle_visibility_a=true; 
-        }
-
-    }
-    else{
-
-    }
-
     
-    // if both menu are invisibile than map is touchable
-    if(  (!toggle_visibility_s) && (!toggle_visibility_a)){
-        $('#map').css('z-index',0);
-    }
-    // else untouchable
-    else{
-        $('#map').css('z-index',-1);
-    }
     $('#side-container').css('z-index','33');
     $('#result-side-container').css('z-index','35');
-
-    
-    console.log("==============================")
-
 }
 
 // key listener for hot keys
@@ -105,10 +53,10 @@ window.addEventListener("keypress",function(e){
             toggle_menu('a')
         }
         else if(e.key =='q'||e.key=='Q'){
-            map.setZoom(map.getZoom()-2)
+            mapHandler.map.setZoom(mapHandler.map.getZoom()-2)
         }
         else if(e.key =='w'||e.key=='W'){
-            map.setZoom(map.getZoom()+2)
+            mapHandler.map.setZoom(mapHandler.map.getZoom()+2)
         }
     }
 

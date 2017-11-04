@@ -2,13 +2,14 @@
 var express = require('express')
 
 // sub app require
-var sub_app_index = require('./router/index')
+var simulator_router = require('./router/simulator')
+var generator_router = require('./router/generator')
+var index_router = require('./router/index')
 
 // module require
 var path = require('path');
 var bodyParser = require('body-parser');
 var conf = require('./conf').get(process.env.NODE_ENV);
-
 
 // make instances
 var app = express()
@@ -32,7 +33,9 @@ app.use(function(err, req, res, next) {
 })
 
 // connect sub apps
-app.use('/', sub_app_index) // sub app for normal services
+app.use('/', index_router) // sub app for normal services
+app.use('/', simulator_router) // sub app for normal services
+app.use('/', generator_router) // sub app for normal services
 
 // listen application
 app.listen(conf.server.port, function(){

@@ -1,9 +1,8 @@
 var dependencies =[
-    "globalVar.js",
     "data.js",
     "grid.js",
     "grouping.js",
-    "window.js"
+
 ]
 for(idx in dependencies){
     var dependency = dependencies[idx]
@@ -12,13 +11,13 @@ for(idx in dependencies){
 }
 
 function run(){
-    deleteDrones()
-    deleteAreas()
-    deleteCells()
-    deleteMarkers()
-    initGlobalVars()
-    reload()
-    getTest()
-    addServiceArea(true)
+    // deleteDrones()
+    // deleteAreas()
+    // deleteCells()
+    // deleteMarkers()
+    // initGlobalVars()
+    // reload()
+    getNodeInfo()
+    // addServiceArea(true)
 }
 
