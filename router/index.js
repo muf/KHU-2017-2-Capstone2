@@ -12,7 +12,7 @@ var app = express();
 // # Default routing   //////////////////////////////////////////////////////
 router.get('/',function(req, res, next) {
   console.log('get /');
-  res.redirect('/drone')
+  res.redirect('/main')
   });
 
   router.get('/main',function(req, res, next) {

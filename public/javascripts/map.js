@@ -53,7 +53,7 @@ function initMap(){
     var lng = event.latLng.lng();
     //alert("("+lat+","+lng+")")
     console.log(lat+","+lng)
-    make_rand_sample(lat, lng, markers.length, 0)
+    add(lat, lng, markers.length, 0)
     map.setZoom(map.getZoom()-1)
   }); 
   
