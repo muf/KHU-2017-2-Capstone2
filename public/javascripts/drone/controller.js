@@ -1,16 +1,25 @@
 
 function init(){
-    alert("init")
-    
-}
-function connect(){
-    alert("connect")
-    
+    $.ajax({
+        type: 'GET',     
+        url: '/init',
+        success: function () {
+            console.log("success")
+        }})
 }
 function takeoff(){
-    alert("takeoff")
-    
+    $.ajax({
+        type: 'GET',     
+        url: '/takeoff',
+        success: function () {
+            console.log("success")
+        }})
 }
 function land(){
-    alert("land")
+    $.ajax({
+        type: 'GET',     
+        url: '/land',
+        success: function () {
+            console.log("success")
+        }})
 }
