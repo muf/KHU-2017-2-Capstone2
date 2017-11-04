@@ -36,20 +36,25 @@ router.get('/drone', function (req, res) {
   //   mydrone.land(
   //   )
   // }, 10000);
+  mydrone.init();
+  mydrone.land();
+  mydrone.fighting_plan_test();
+  // mydrone.get_gps();
+
   res.render("../view/drone.ejs")
 })
 
-rouetr.get('/init', function (req, res, next){
+router.get('/init', function (req, res, next){
   console.log("get init");
-  mydrone.takeoff();
+  mydrone.init();
 })
 
-rouetr.get('/takeoff', function (req, res, next){
+router.get('/takeoff', function (req, res, next){
   console.log("get take off");
   mydrone.takeoff();
 })
 
-rouetr.get('/land', function (req, res, next){
+router.get('/land', function (req, res, next){
   console.log("get land");
   mydrone.land();
 })
