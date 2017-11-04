@@ -1,22 +1,80 @@
 <!DOCTYPE html>
-
 <html>
+  <head>
+	<title> Simulation </title>
+  <% include ./common/header.ejs %>
+    <!-- Custom CSS -->
+    <link rel='stylesheet' href='/css/logic/container.css' />
+    <link rel='stylesheet' href='/css/logic/navbar.css' />  
+    <link rel='stylesheet' href='/css/logic/side/side.css' />
+    <link rel='stylesheet' href='/css/logic/side/drone_side.css' />
+     <!--JS -->
+    <script src="/javascripts/map.js"></script>   
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-</head>
+  </head>
+  <body>  
+    <% include ./common/main-navbar.ejs %>
 
-<body>
-    Drone Control Test Page
-    <div>
-      <a href="#" onclick="">
-        Drone init
-      </a>
-      <a href="#" onclick="">
-          Drone init
-      </a>
+    <div id="main-container">
+      <!-- #main-container>#1 -->
+      <div id="map"></div>
+
+      <!-- #main-container>#2 -->
+      <div id="side-container">
+          <div id = "side-sample-container">
+            <div>
+              <span class = "sample-span">Functions</span><br>
+              <hr>
+
+
+             <span class = "drone-functions" onclick="init()"> init (r) </span><br>
+             <span class = "drone-functions" onclick="connect()"> connect (v) </span><br>
+             <span class = "drone-functions" onclick="takeoff()"> takeoff (g) </span><br>
+             <span class = "drone-functions" onclick="land()"> land (g) </span><br>
+
+             <!--
+             <span class = "sim-functions" onclick="addCells()"> addCells </span><br>
+             <span class = "sim-functions" onclick="deleteCells()"> deleteCells </span><br>-->
+                
+            </div>
+
+          </div>
+          <div id ="side-button-container">
+            <button id="add-coords"> +  </button>
+            <button id="apply" class="apply"> 적용  </button>
+          </div><!--  -->
+
+          <div id ="side-table-container">  
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Num</th>
+                  <th>Coords</th>
+                  <th>Regex</th>
+                </tr>
+              </thead>
+
+              <tbody>
+              </tbody>
+
+            </table>
+          </div><!-- search-container-apply -->
+        </div><!--  -->
+      </div> <!--  -->
     </div>
+      
 
-</body>
-
+    
+    
+     <!-- div id = map 을 찾기 때문에 div map 뒤에 호출해야 한다. -->
+    <!--등록된 key를 이용해서 구글 API 요청. 추가로 libraries=places 라이브러리 호출. callback=initMap-->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzSqxdqbzLyC57PF_vX4zyvvN4O_C0F4w&libraries=places&callback=initMap"></script>
+   
+    <script src="/javascripts/side/sim.js"></script>  
+    <script src="/javascripts/drone/controller.js"></script>
+    <script src="/javascripts/side/side.js"></script>
+    
+   
+    
+  </body>
 </html>
