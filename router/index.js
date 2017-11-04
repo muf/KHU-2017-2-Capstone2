@@ -1,4 +1,5 @@
 var express = require('express')
+var drone = require('../private/drone')
 
 const csv = require('csv-streamify')
 const fs = require('fs')
@@ -8,11 +9,10 @@ const parser = csv()
 var router = express.Router()
 var app = express();
 
-
 // # Default routing   //////////////////////////////////////////////////////
 router.get('/',function(req, res, next) {
   console.log('get /');
-  res.redirect('/main')
+  res.redirect('/drone')
   });
 
   router.get('/main',function(req, res, next) {
@@ -20,6 +20,11 @@ router.get('/',function(req, res, next) {
     res.redirect('/sim');
   });
 
+router.get('/drone',function(req,res){
+  // mydrone = new drone();
+  // mydrone.init();
+  res.render("../view/drone.ejs")
+})
 
 // # multi_point_map ////////////////////////////////////////////////////////
 router.get('/multi_point_map',function(req, res, next) {
@@ -44,7 +49,7 @@ router.get('/sim',function(req, res, next) {
       })
 
       // var dataPath =  '/Users/junghyun.park/workspace/git/kiwi_kyunghee/web/JS_web/data/'
-      var dataPath = 'C:\\Users\\huryi\\Desktop\\kiwi_kyunghee\\web\\JS_web\\data\\'
+      var dataPath = 'C:/Users/Phigaro/Desktop/Cap2/KHU-2017-2-Capstone2/'
       var csvFileName = 'Output4.csv'
       var csvPath = dataPath + csvFileName;
       fs.createReadStream(csvPath).pipe(parser);
