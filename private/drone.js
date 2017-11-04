@@ -1,24 +1,24 @@
 function drone (){
     var bebop = require('node-bebop');
-    var bebop_drone = bebop.createClient();
+    var bebop_drone
    
     this.init = function(){
         console.log("drone_init & takeoff")
-        bebop_drone.connect(function() {
-            bebop_drone.takeOff();
-        })
+        bebop_drone = bebop.createClient();
     }
 
     this.takeoff = function(){
         console.log("drone takeoff")
-        bebop_drone.takeOff();
+        drone.connect(function() {
+            drone.takeOff();
+          });
     }
 
     this.land = function(){
-        console.log("drone land")
-        setTimeout(function() {
-            bebop_drone.land();
-        }, 5000);
+        console.log("drone takeoff")
+        drone.connect(function() {
+            drone.land();
+          });
     }
 }
 
