@@ -43,7 +43,7 @@ function make_rand_sample(lat, lng, label){
         //console.log(rand_lat + ", "+rand_long);  
     }
     reload()
-    return label+rand_num
+    return label + rand_num
 }
 function make_table_rows(){
     
