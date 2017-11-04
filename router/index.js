@@ -1,5 +1,6 @@
 var express = require('express')
 var drone = require('../private/drone')
+var mydrone = new drone();
 
 const csv = require('csv-streamify')
 const fs = require('fs')
@@ -8,6 +9,7 @@ const parser = csv()
 
 var router = express.Router()
 var app = express();
+
 
 // # Default routing   //////////////////////////////////////////////////////
 router.get('/', function (req, res, next) {
@@ -21,20 +23,35 @@ router.get('/main', function (req, res, next) {
 });
 
 router.get('/drone', function (req, res) {
-  mydrone = new drone();
+  
   // init & take off
-  mydrone.init();
-  mydrone.land();
+  // mydrone.init();
+  // mydrone.land();
   // re take off
-  setTimeout(function () {
-    mydrone.takeoff(
-    )
-  }, 5000);
-  setTimeout(function () {
-    mydrone.land(
-    )
-  }, 10000);
+  // setTimeout(function () {
+  //   mydrone.takeoff(
+  //   )
+  // }, 5000);
+  // setTimeout(function () {
+  //   mydrone.land(
+  //   )
+  // }, 10000);
   res.render("../view/drone.ejs")
+})
+
+rouetr.get('/init', function (req, res, next){
+  console.log("get init");
+  mydrone.takeoff();
+})
+
+rouetr.get('/takeoff', function (req, res, next){
+  console.log("get take off");
+  mydrone.takeoff();
+})
+
+rouetr.get('/land', function (req, res, next){
+  console.log("get land");
+  mydrone.land();
 })
 
 // # multi_point_map ////////////////////////////////////////////////////////
