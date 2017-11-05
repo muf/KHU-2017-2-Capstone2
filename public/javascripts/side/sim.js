@@ -2,7 +2,7 @@ var dependencies =[
     "data.js",
     "grid.js",
     "grouping.js",
-
+    "window.js"
 ]
 for(idx in dependencies){
     var dependency = dependencies[idx]
@@ -18,6 +18,7 @@ function run(){
     // initGlobalVars()
     // reload()
     getNodeInfo()
+    
     // addServiceArea(true)
 }
 
