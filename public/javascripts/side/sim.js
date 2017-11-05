@@ -16,8 +16,10 @@ function run(){
     deleteAreas()
     deleteCells()
     deleteMarkers()
+
     initGlobalVars()
     reload()
+    
     getTest()
     addServiceArea(true)
 }
